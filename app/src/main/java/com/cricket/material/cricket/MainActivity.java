@@ -10,6 +10,10 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.cricket.material.cricket.LiveScore.LiveScoreService;
+import com.cricket.material.cricket.LiveScore.LivescoreSummary;
+import com.cricket.material.cricket.News.CricketNews;
+import com.cricket.material.cricket.News.CricketNewsService;
 import com.cricket.material.cricket.cricketsummary.CricketService;
 import com.cricket.material.cricket.cricketsummary.CricketSummary;
 
@@ -21,6 +25,8 @@ public class MainActivity extends AppCompatActivity implements ActionBar.TabList
 
     private static final String includes_past  = "select * from cricket.series.past";
     private static final String includes_ongoing = "select * from cricket.series.ongoing";
+    private static final String includes_live = "select * from cricket.scorecard.live.summary";
+    private static final String includes_news = "select * from cricket.news  where region=\"in\"";
 
     /**
      * The {@link android.support.v4.view.PagerAdapter} that will provide
@@ -78,7 +84,9 @@ public class MainActivity extends AppCompatActivity implements ActionBar.TabList
                             .setTabListener(this));
         }
 
-        loadCrickSummaryData(includes_past);
+        //loadCrickSummaryData(includes_past);
+        //loadLiveScoreData(includes_live);
+        loadCricNewsData(includes_news);
     }
 
 
@@ -87,6 +95,15 @@ public class MainActivity extends AppCompatActivity implements ActionBar.TabList
         service.loadSummaryData(mCricCallback, includes);
     }
 
+    protected void loadLiveScoreData(String includes) {
+        LiveScoreService service = new LiveScoreService();
+        service.loadLiveScoreData(mCricLiveScoreCallback, includes);
+    }
+
+    protected void loadCricNewsData(String includes) {
+        CricketNewsService service = new CricketNewsService();
+        service.loadCricNewsData(mCricNewsCallback, includes);
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -126,11 +143,39 @@ public class MainActivity extends AppCompatActivity implements ActionBar.TabList
     }
 
 
+    /* Callback for Ongoing / Past Tables */
     protected Callback<CricketSummary> mCricCallback = new Callback<CricketSummary>() {
-
 
         @Override
         public void success(CricketSummary cricketSummary, Response response) {
+            Log.d(TAG, "success ");
+        }
+
+        @Override
+        public void failure(RetrofitError error) {
+            Log.d(TAG, "failure ");
+        }
+    };
+
+    /* Callback for Live Score */
+    protected Callback<LivescoreSummary> mCricLiveScoreCallback = new Callback<LivescoreSummary>() {
+
+        @Override
+        public void success(LivescoreSummary livescoreSummary, Response response) {
+            Log.d(TAG, "success ");
+        }
+
+        @Override
+        public void failure(RetrofitError error) {
+            Log.d(TAG, "failure ");
+        }
+    };
+
+    /* Callback for News Tables */
+    protected Callback<CricketNews> mCricNewsCallback = new Callback<CricketNews>() {
+
+        @Override
+        public void success(CricketNews cricketNews, Response response) {
             Log.d(TAG, "success ");
         }
 
