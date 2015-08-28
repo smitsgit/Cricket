@@ -17,7 +17,10 @@ import retrofit.Callback;
 import retrofit.RetrofitError;
 import retrofit.client.Response;
 
-public class MainActivity extends AppCompatActivity implements ActionBar.TabListener, Callback<CricketSummary> {
+public class MainActivity extends AppCompatActivity implements ActionBar.TabListener {
+
+    private static final String includes_past  = "select * from cricket.series.past";
+    private static final String includes_ongoing = "select * from cricket.series.ongoing";
 
     /**
      * The {@link android.support.v4.view.PagerAdapter} that will provide
@@ -75,13 +78,13 @@ public class MainActivity extends AppCompatActivity implements ActionBar.TabList
                             .setTabListener(this));
         }
 
-        loadCrickSummaryData();
+        loadCrickSummaryData(includes_past);
     }
 
 
-    protected void loadCrickSummaryData() {
+    protected void loadCrickSummaryData(String includes) {
         CricketService service = new CricketService();
-        service.loadSummaryData(this);
+        service.loadSummaryData(mCricCallback, includes);
     }
 
 
@@ -122,16 +125,20 @@ public class MainActivity extends AppCompatActivity implements ActionBar.TabList
     public void onTabReselected(ActionBar.Tab tab, FragmentTransaction fragmentTransaction) {
     }
 
-    /* Retrofit callbacks */
-    @Override
-    public void success(CricketSummary cricketSummary, Response response) {
-        Log.d(TAG, "success ");
-    }
 
-    @Override
-    public void failure(RetrofitError error) {
+    protected Callback<CricketSummary> mCricCallback = new Callback<CricketSummary>() {
 
-    }
+
+        @Override
+        public void success(CricketSummary cricketSummary, Response response) {
+            Log.d(TAG, "success ");
+        }
+
+        @Override
+        public void failure(RetrofitError error) {
+            Log.d(TAG, "failure ");
+        }
+    };
 
 
 }
