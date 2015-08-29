@@ -7,40 +7,41 @@
     android:gravity="center_vertical"
     android:minHeight="?android:attr/listPreferredItemHeight"
     android:orientation="vertical"
-    android:background="@color/material_blue_grey_900">
+    android:background="@color/white"
+    >
 
     <TextView
-        android:id="@+id/list_item_date_match_detail"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:id="@+id/list_item_series"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingLeft="16dp"
         android:fontFamily="sans-serif-condensed"
-        android:text="1st ODI at Lords"
         android:textAppearance="?android:textAppearanceSmall"
-        android:textColor="@color/accent_material_light"/>
+        android:textColor="@color/black"/>
 
-    <TextView
-        android:id="@+id/list_item_score_team1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="sans-serif-condensed"
-        android:text="Eng 149/9"
-        android:textAppearance="?android:textAppearanceLarge" />
+    <!--<TextView-->
+        <!--android:id="@+id/list_item_score_team1"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:fontFamily="sans-serif-condensed"-->
+        <!--android:text="Eng 149/9"-->
+        <!--android:textAppearance="?android:textAppearanceLarge" />-->
 
 
-    <TextView
-        android:id="@+id/list_item_score_team2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="sans-serif-condensed"
-        android:text="SA 150/4"
-        android:textAppearance="?android:textAppearanceLarge" />
+    <!--<TextView-->
+        <!--android:id="@+id/list_item_score_team2"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:fontFamily="sans-serif-condensed"-->
+        <!--android:text="SA 150/4"-->
+        <!--android:textAppearance="?android:textAppearanceLarge" />-->
 
-    <TextView
-        android:id="@+id/list_item_match_result"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="sans-serif-condensed"
-        android:text="SA won by 49 runs"
-        android:textAppearance="?android:textAppearanceSmall" />
+    <!--<TextView-->
+        <!--android:id="@+id/list_item_match_result"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:fontFamily="sans-serif-condensed"-->
+        <!--android:text="SA won by 49 runs"-->
+        <!--android:textAppearance="?android:textAppearanceSmall" />-->
 
 </LinearLayout>
