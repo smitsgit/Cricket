@@ -2,6 +2,7 @@ package com.cricket.material.cricket;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -52,12 +53,12 @@ public class NavActivity extends AppCompatActivity
 
         switch(position) {
             case 0:
-                 intent = new Intent(this, MainActivity.class);
-                startActivity(intent);
+                FragmentManager fragmentManager = getSupportFragmentManager();
+                fragmentManager.beginTransaction()
+                        .replace(R.id.container, new NavActivityFragment())
+                        .commit();
                 break;
             case 2:
-                 intent = new Intent(this, MainActivity.class);
-                startActivity(intent);
                 break;
             default:
                 Log.d(TAG, "onNavigationDrawerItemSelected ");
@@ -65,19 +66,6 @@ public class NavActivity extends AppCompatActivity
 
     }
 
-    public void onSectionAttached(int number) {
-        switch (number) {
-            case 1:
-                mTitle = getString(R.string.title_section1);
-                break;
-            case 2:
-                mTitle = getString(R.string.title_section2);
-                break;
-            case 3:
-                mTitle = getString(R.string.title_section3);
-                break;
-        }
-    }
 
     public void restoreActionBar() {
         ActionBar actionBar = getSupportActionBar();
