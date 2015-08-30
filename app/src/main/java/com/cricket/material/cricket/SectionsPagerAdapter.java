@@ -27,11 +27,11 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
 
         switch (position){
             case 0:
-                return new PlaceholderFragment();
+                return new ScoresFragment();
             case 1:
-                return new PlaceholderFragment();
+                return new NewsFragment();
             case 2:
-                return new PlaceholderFragment();
+                return new OngoingMatchesFragment();
         }
 
         return null;
