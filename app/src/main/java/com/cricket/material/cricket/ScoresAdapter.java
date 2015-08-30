@@ -14,7 +14,7 @@ import com.cricket.material.cricket.News.CricketNews;
 import retrofit.RetrofitError;
 import retrofit.client.Response;
 
-public class ScoresAdapter extends ArrayAdapter<ScoresDetail> implements  retrofit.Callback<LivescoreSummary> {
+public class ScoresAdapter extends ArrayAdapter<ScoresDetail> implements retrofit.Callback<LivescoreSummary> {
 
     private final String LOG_TAG = ScoresAdapter.class.getSimpleName();
 
@@ -31,7 +31,7 @@ public class ScoresAdapter extends ArrayAdapter<ScoresDetail> implements  retrof
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.list_item_scores, parent, false);
         }
         // Lookup view for data population
-        TextView scores = (TextView) convertView.findViewById(R.id.list_item_scores_text);
+        TextView scores = (TextView) convertView.findViewById(R.id.scores_matchno);
         scores.setText(match.score);
 
         return convertView;
@@ -44,7 +44,7 @@ public class ScoresAdapter extends ArrayAdapter<ScoresDetail> implements  retrof
         // Filling dummy data
         // TODO: Replace dummy data
         for (int i = 0; i < 10; i++) {
-            ScoresDetail scoresData = new ScoresDetail("Scores" + i);
+            ScoresDetail scoresData = new ScoresDetail("Score " + i + ". ");
             add(scoresData);
         }
     }

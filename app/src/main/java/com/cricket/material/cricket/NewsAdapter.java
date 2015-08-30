@@ -18,9 +18,10 @@ import java.util.List;
 import retrofit.RetrofitError;
 import retrofit.client.Response;
 
-public class NewsAdapter extends ArrayAdapter<NewsDetail> implements  retrofit.Callback<CricketNews> {
+public class NewsAdapter extends ArrayAdapter<NewsDetail> implements retrofit.Callback<CricketNews> {
 
     private final String LOG_TAG = NewsAdapter.class.getSimpleName();
+
     public NewsAdapter(Context context) {
         super(context, 0);
     }
@@ -40,18 +41,9 @@ public class NewsAdapter extends ArrayAdapter<NewsDetail> implements  retrofit.C
 
         author.setText(news.author);
         title.setText(news.title);
-        thumb.setImageResource(R.drawable.ic_drawer);
         if (news.getUrl() != null) {
             Picasso.with(getContext())
                     .load(news.getUrl())
-                    .noFade()
-                    .into(thumb);
-        } else {
-            // Setting some dummy image if image is missing
-            // TODO: Take a call on default new image
-            String tempUrl = "https://s.yimg.com/qx/cricket/fufp/images/4_l-11-2-2012-b8ce58599a586b164189b090b45c07e1.png";
-            Picasso.with(getContext())
-                    .load(tempUrl)
                     .noFade()
                     .into(thumb);
         }

@@ -15,5 +15,7 @@
     <string name="scores">SCORES</string>
     <string name="news">NEWS</string>
     <string name="series">SERIES</string>
+    <string name="title_activity_series">SeriesActivity</string>
+    <string name="hello_world">Hello world!</string>
 
 </resources>
