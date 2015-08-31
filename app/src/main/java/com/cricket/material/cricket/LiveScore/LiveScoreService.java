@@ -96,6 +96,7 @@ public class LiveScoreService {
                 in.close(); // we are responsible to close the InputStream after use
                 String newstr = string;
                 newstr = findAndReplace(Pattern.compile("\"results\":\\{"), string);
+                newstr = findAndReplace(Pattern.compile("\"Scorecard\":\\{"), newstr);
                 if (String.class.equals(type)) {
                     return newstr;
                 } else {

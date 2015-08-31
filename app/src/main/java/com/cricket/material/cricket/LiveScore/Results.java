@@ -1,20 +1,20 @@
 
 package com.cricket.material.cricket.LiveScore;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Results {
 
-    private com.cricket.material.cricket.LiveScore.Scorecard Scorecard;
+    private List<Scorecard> Scorecard = new ArrayList<>();
 
-
-    public com.cricket.material.cricket.LiveScore.Scorecard getScorecard() {
+    public List<Scorecard> getScorecard() {
         return Scorecard;
     }
 
 
-    public void setScorecard(com.cricket.material.cricket.LiveScore.Scorecard Scorecard) {
-        this.Scorecard = Scorecard;
+    public void setScorecard(List<Scorecard> scorecard) {
+        this.Scorecard = scorecard;
     }
-
-
 
 }

@@ -9,7 +9,6 @@ import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
 import com.cricket.material.cricket.LiveScore.LivescoreSummary;
-import com.cricket.material.cricket.News.CricketNews;
 
 import retrofit.RetrofitError;
 import retrofit.client.Response;
