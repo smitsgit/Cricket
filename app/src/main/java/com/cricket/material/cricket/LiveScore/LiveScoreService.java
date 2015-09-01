@@ -1,5 +1,7 @@
 package com.cricket.material.cricket.LiveScore;
 
+import android.util.Log;
+
 import com.google.gson.Gson;
 
 import java.io.BufferedReader;
@@ -25,6 +27,7 @@ public class LiveScoreService {
     private static final String API_URL = "https://query.yahooapis.com";
     private static final String format ="json";
     private static final String env ="store://0TxIGQMQbObzvU4Apia0V0";
+    public static final String TAG = LiveScoreService.class.getSimpleName();
 
 
     /*
@@ -72,18 +75,22 @@ public class LiveScoreService {
             return closePos;
         }
 
+
         /** @return index of pattern in s or -1, if not found */
         public  String findAndReplace(Pattern pattern, String s) {
             int index = -1;
             int closingindex = -1;
             char c = 'A';
+            int i = 0;
             StringBuilder newstring = new StringBuilder(s);
             Matcher matcher = pattern.matcher(s);
             while(matcher.find()) {
-                index = matcher.end();
-                closingindex = findClosingParen(s.toCharArray(), index);
-                newstring.insert(index - 1,"[");
-                newstring.insert(closingindex + 2,"]");
+                index = matcher.end() + i*2;
+                closingindex = findClosingParen(newstring.toString().toCharArray(), index - 2);
+                Log.d(TAG, "findAndReplace " + pattern + " " + index + " " + closingindex);
+                newstring = newstring.insert(index - 1, "[");
+                newstring = newstring.insert(closingindex + 1,"]");
+                i++;
             }
             return newstring.toString();
         }
