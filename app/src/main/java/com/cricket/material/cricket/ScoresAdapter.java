@@ -9,16 +9,25 @@ import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
 import com.cricket.material.cricket.LiveScore.LivescoreSummary;
+import com.firebase.client.DataSnapshot;
+import com.firebase.client.Firebase;
+import com.firebase.client.FirebaseError;
+import com.firebase.client.ValueEventListener;
 
+import retrofit.Callback;
 import retrofit.RetrofitError;
 import retrofit.client.Response;
 
-public class ScoresAdapter extends ArrayAdapter<ScoresDetail> implements retrofit.Callback<LivescoreSummary> {
+public class ScoresAdapter extends ArrayAdapter<ScoresDetail> implements Callback<LivescoreSummary>, ValueEventListener {
 
     private final String LOG_TAG = ScoresAdapter.class.getSimpleName();
+    private Firebase mRef;
 
     public ScoresAdapter(Context context) {
         super(context, 0);
+        Firebase.setAndroidContext(context);
+        mRef = new Firebase("https://coolapi.firebaseio.com/liveScore");
+        mRef.addValueEventListener(this);
     }
 
     @Override
@@ -39,7 +48,17 @@ public class ScoresAdapter extends ArrayAdapter<ScoresDetail> implements retrofi
     @Override
     public void success(LivescoreSummary livescoreSummary, Response response) {
         Log.d(LOG_TAG, "success ");
+    }
 
+    @Override
+    public void failure(RetrofitError error) {
+
+    }
+
+    @Override
+    public void onDataChange(DataSnapshot dataSnapshot) {
+        Log.d(LOG_TAG, "onDataChange ");
+        LivescoreSummary livescoreSummary = dataSnapshot.getValue(LivescoreSummary.class);
         // Filling dummy data
         // TODO: Replace dummy data
         for (int i = 0; i < 10; i++) {
@@ -49,7 +68,7 @@ public class ScoresAdapter extends ArrayAdapter<ScoresDetail> implements retrofi
     }
 
     @Override
-    public void failure(RetrofitError error) {
+    public void onCancelled(FirebaseError firebaseError) {
 
     }
 }

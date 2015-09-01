@@ -10,16 +10,26 @@ import android.widget.TextView;
 
 import com.cricket.material.cricket.cricketsummary.CricketSummary;
 import com.cricket.material.cricket.cricketsummary.Series;
+import com.firebase.client.DataSnapshot;
+import com.firebase.client.Firebase;
+import com.firebase.client.FirebaseError;
+import com.firebase.client.ValueEventListener;
 
 import java.util.List;
 
+import retrofit.Callback;
 import retrofit.RetrofitError;
 import retrofit.client.Response;
 
-public class OngoingMatchesAdapter extends ArrayAdapter<OngoingMatchDetail> implements  retrofit.Callback<CricketSummary> {
+public class OngoingMatchesAdapter extends ArrayAdapter<OngoingMatchDetail> implements  Callback<CricketSummary>, ValueEventListener {
+
+    private Firebase mRef;
 
     public OngoingMatchesAdapter(Context context) {
         super(context, 0);
+        Firebase.setAndroidContext(context);
+        mRef = new Firebase("https://coolapi.firebaseio.com/cricsummary");
+        mRef.addValueEventListener(this);
     }
     private final String LOG_TAG = OngoingMatchesAdapter.class.getSimpleName();
 
@@ -40,6 +50,18 @@ public class OngoingMatchesAdapter extends ArrayAdapter<OngoingMatchDetail> impl
 
     @Override
     public void success(CricketSummary cricketSummary, Response response) {
+        Log.d(LOG_TAG, "success");
+    }
+
+    @Override
+    public void failure(RetrofitError error) {
+        Log.d(LOG_TAG, "failure");
+    }
+
+    @Override
+    public void onDataChange(DataSnapshot dataSnapshot) {
+        Log.d("##############", "onDataChange ongoing");
+        CricketSummary cricketSummary = dataSnapshot.getValue(CricketSummary.class);
         List<Series> series = cricketSummary.getQuery().getResults().getSeries();
 
         for (int i = 0; i < series.size(); i++) {
@@ -47,12 +69,10 @@ public class OngoingMatchesAdapter extends ArrayAdapter<OngoingMatchDetail> impl
             OngoingMatchDetail seriesData = new OngoingMatchDetail(series.get(i).getSeriesName());
             add(seriesData);
         }
-
-        Log.d(LOG_TAG, "success");
     }
 
     @Override
-    public void failure(RetrofitError error) {
+    public void onCancelled(FirebaseError firebaseError) {
 
     }
 }

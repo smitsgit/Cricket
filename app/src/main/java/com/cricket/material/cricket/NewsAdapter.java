@@ -11,19 +11,28 @@ import android.widget.TextView;
 
 import com.cricket.material.cricket.News.CricketNews;
 import com.cricket.material.cricket.News.Item;
+import com.firebase.client.DataSnapshot;
+import com.firebase.client.Firebase;
+import com.firebase.client.FirebaseError;
+import com.firebase.client.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
+import retrofit.Callback;
 import retrofit.RetrofitError;
 import retrofit.client.Response;
 
-public class NewsAdapter extends ArrayAdapter<NewsDetail> implements retrofit.Callback<CricketNews> {
+public class NewsAdapter extends ArrayAdapter<NewsDetail> implements Callback<CricketNews>, ValueEventListener {
 
     private final String LOG_TAG = NewsAdapter.class.getSimpleName();
+    private Firebase mRef;
 
     public NewsAdapter(Context context) {
         super(context, 0);
+        Firebase.setAndroidContext(context);
+        mRef = new Firebase("https://coolapi.firebaseio.com/news");
+        mRef.addValueEventListener(this);
     }
 
     @Override
@@ -54,7 +63,17 @@ public class NewsAdapter extends ArrayAdapter<NewsDetail> implements retrofit.Ca
     @Override
     public void success(CricketNews cricketNews, Response response) {
         Log.d(LOG_TAG, "success ");
+    }
 
+    @Override
+    public void failure(RetrofitError error) {
+
+    }
+
+    @Override
+    public void onDataChange(DataSnapshot dataSnapshot) {
+        Log.d(LOG_TAG, "onDataChange ");
+        CricketNews cricketNews = dataSnapshot.getValue(CricketNews.class);
         List<Item> items = cricketNews.getQuery().getResults().getItem();
         for (int i = 0; i < items.size(); i++) {
             NewsDetail newsData = new NewsDetail(items.get(i).getAuthor(), items.get(i).getTitle(), items.get(i).getThumburl(), items.get(i).getLink());
@@ -63,7 +82,7 @@ public class NewsAdapter extends ArrayAdapter<NewsDetail> implements retrofit.Ca
     }
 
     @Override
-    public void failure(RetrofitError error) {
-
+    public void onCancelled(FirebaseError firebaseError) {
+        Log.d(LOG_TAG, "onDataChange - FireBase");
     }
 }

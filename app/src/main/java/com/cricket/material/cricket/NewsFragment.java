@@ -1,10 +1,8 @@
 package com.cricket.material.cricket;
 
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -46,7 +44,8 @@ public class NewsFragment extends Fragment {
         super.onCreate(savedInstanceState);
 
         mNewsAdapter = new NewsAdapter(getActivity());
-        loadCricNewsData(includes_news);
+        /* No Retrofit Calls from Apps Anymore
+        loadCricNewsData(includes_news);*/
     }
 
     protected void loadCricNewsData(String includes) {

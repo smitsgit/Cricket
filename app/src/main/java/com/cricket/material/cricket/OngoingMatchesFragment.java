@@ -43,7 +43,8 @@ public class OngoingMatchesFragment extends Fragment {
         super.onCreate(savedInstanceState);
 
         mOngoingMatchesAdapter = new OngoingMatchesAdapter(getActivity());
-        loadCrickSummaryData(includes_past);
+        /* No Retrofit Calls from Apps Anymore
+        loadCrickSummaryData(includes_past);*/
     }
 
     protected void loadCrickSummaryData(String includes) {
