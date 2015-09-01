@@ -23,6 +23,7 @@ import retrofit.Callback;
 import retrofit.RetrofitError;
 import retrofit.client.Response;
 
+/* test */
 public class NewsAdapter extends ArrayAdapter<NewsDetail> implements Callback<CricketNews>, ValueEventListener {
 
     private final String LOG_TAG = NewsAdapter.class.getSimpleName();
