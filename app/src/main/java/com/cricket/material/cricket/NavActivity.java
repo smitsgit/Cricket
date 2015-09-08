@@ -1,6 +1,5 @@
 package com.cricket.material.cricket;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.widget.DrawerLayout;
@@ -42,23 +41,18 @@ public class NavActivity extends AppCompatActivity
 
     @Override
     public void onNavigationDrawerItemSelected(int position) {
-        // update the main content by replacing fragments
-
-        /*FragmentManager fragmentManager = getSupportFragmentManager();
-        fragmentManager.beginTransaction()
-                .replace(R.id.container, PlaceholderFragment.newInstance(position + 1))
-                .commit();
-*/
-        Intent intent;
-
+        FragmentManager fragmentManager = getSupportFragmentManager();
         switch(position) {
             case 0:
-                FragmentManager fragmentManager = getSupportFragmentManager();
                 fragmentManager.beginTransaction()
                         .replace(R.id.container, new NavActivityFragment())
                         .commit();
                 break;
+            case 1:
             case 2:
+                fragmentManager.beginTransaction()
+                        .replace(R.id.container, new UpComingMatchesFragment())
+                        .commit();
                 break;
             default:
                 Log.d(TAG, "onNavigationDrawerItemSelected ");

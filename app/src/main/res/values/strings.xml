@@ -17,5 +17,6 @@
     <string name="series">SERIES</string>
     <string name="title_activity_series">SeriesActivity</string>
     <string name="hello_world">Hello world!</string>
+    <string name="title_activity_up_coming_matches">UpComingMatches</string>
 
 </resources>
