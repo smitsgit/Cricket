@@ -48,10 +48,12 @@ public class NewsFragment extends Fragment {
         loadCricNewsData(includes_news);*/
     }
 
+/*
     protected void loadCricNewsData(String includes) {
         CricketNewsService service = new CricketNewsService();
         service.loadCricNewsData(mNewsAdapter, includes);
     }
+*/
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,

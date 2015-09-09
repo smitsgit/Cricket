@@ -9,8 +9,8 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.cricket.material.cricket.News.CricketNews;
-import com.cricket.material.cricket.News.Item;
+import com.cricket.material.cricket.NewsFB.CricketNews;
+import com.cricket.material.cricket.NewsFB.Item;
 import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
@@ -75,7 +75,7 @@ public class NewsAdapter extends ArrayAdapter<NewsDetail> implements Callback<Cr
     public void onDataChange(DataSnapshot dataSnapshot) {
         Log.d(LOG_TAG, "onDataChange ");
         CricketNews cricketNews = dataSnapshot.getValue(CricketNews.class);
-        List<Item> items = cricketNews.getQuery().getResults().getItem();
+        List<Item> items = cricketNews.getItem();
         for (int i = 0; i < items.size(); i++) {
             NewsDetail newsData = new NewsDetail(items.get(i).getAuthor(), items.get(i).getTitle(), items.get(i).getThumburl(), items.get(i).getLink());
             add(newsData);
