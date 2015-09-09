@@ -49,6 +49,10 @@ public class NavActivity extends AppCompatActivity
                         .commit();
                 break;
             case 1:
+                fragmentManager.beginTransaction()
+                        .replace(R.id.container, new TeamInfoFragment())
+                        .commit();
+                break;
             case 2:
                 fragmentManager.beginTransaction()
                         .replace(R.id.container, new UpComingMatchesFragment())
