@@ -47,10 +47,10 @@ public class OngoingMatchesFragment extends Fragment {
         loadCrickSummaryData(includes_past);*/
     }
 
-    protected void loadCrickSummaryData(String includes) {
+/*    protected void loadCrickSummaryData(String includes) {
         CricketService service = new CricketService();
         service.loadSummaryData(mOngoingMatchesAdapter, includes);
-    }
+    }*/
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
