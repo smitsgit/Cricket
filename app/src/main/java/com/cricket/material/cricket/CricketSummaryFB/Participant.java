@@ -21,7 +21,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 public class Participant {
 
     @JsonProperty("Team")
-    private List<com.example.android.firebaseexample.Series.Past.Team> Team = new ArrayList<com.example.android.firebaseexample.Series.Past.Team>();
+    private List<com.cricket.material.cricket.CricketSummaryFB.Team> Team = new ArrayList<com.cricket.material.cricket.CricketSummaryFB.Team>();
     @JsonProperty("mlevel")
     private String mlevel;
     @JsonProperty("mtype")
@@ -35,7 +35,7 @@ public class Participant {
      *     The Team
      */
     @JsonProperty("Team")
-    public List<com.example.android.firebaseexample.Series.Past.Team> getTeam() {
+    public List<com.cricket.material.cricket.CricketSummaryFB.Team> getTeam() {
         return Team;
     }
 
@@ -45,7 +45,7 @@ public class Participant {
      *     The Team
      */
     @JsonProperty("Team")
-    public void setTeam(List<com.example.android.firebaseexample.Series.Past.Team> Team) {
+    public void setTeam(List<com.cricket.material.cricket.CricketSummaryFB.Team> Team) {
         this.Team = Team;
     }
 

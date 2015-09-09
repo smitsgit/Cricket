@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import com.cricket.material.cricket.CricketSummaryFB.Series;
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -20,7 +22,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 public class Past {
 
     @JsonProperty("Series")
-    private List<com.example.android.firebaseexample.Series.Past.Series> Series = new ArrayList<com.example.android.firebaseexample.Series.Past.Series>();
+    private List<com.cricket.material.cricket.CricketSummaryFB.Series> Series = new ArrayList<com.cricket.material.cricket.CricketSummaryFB.Series>();
     @JsonProperty("count")
     private long count;
     @JsonIgnore
@@ -32,7 +34,7 @@ public class Past {
      *     The Series
      */
     @JsonProperty("Series")
-    public List<com.example.android.firebaseexample.Series.Past.Series> getSeries() {
+    public List<com.cricket.material.cricket.CricketSummaryFB.Series> getSeries() {
         return Series;
     }
 
@@ -42,7 +44,7 @@ public class Past {
      *     The Series
      */
     @JsonProperty("Series")
-    public void setSeries(List<com.example.android.firebaseexample.Series.Past.Series> Series) {
+    public void setSeries(List<com.cricket.material.cricket.CricketSummaryFB.Series> Series) {
         this.Series = Series;
     }
 

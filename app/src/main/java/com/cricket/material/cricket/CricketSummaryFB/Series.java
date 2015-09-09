@@ -30,7 +30,7 @@ public class Series {
     @JsonProperty("Matches")
     private List<Match> Matches = new ArrayList<Match>();
     @JsonProperty("Participant")
-    private com.example.android.firebaseexample.Series.Past.Participant Participant;
+    private com.cricket.material.cricket.CricketSummaryFB.Participant Participant;
     @JsonProperty("SeriesName")
     private String SeriesName;
     @JsonProperty("StartDate")
@@ -104,7 +104,7 @@ public class Series {
      *     The Participant
      */
     @JsonProperty("Participant")
-    public com.example.android.firebaseexample.Series.Past.Participant getParticipant() {
+    public com.cricket.material.cricket.CricketSummaryFB.Participant getParticipant() {
         return Participant;
     }
 
@@ -114,7 +114,7 @@ public class Series {
      *     The Participant
      */
     @JsonProperty("Participant")
-    public void setParticipant(com.example.android.firebaseexample.Series.Past.Participant Participant) {
+    public void setParticipant(com.cricket.material.cricket.CricketSummaryFB.Participant Participant) {
         this.Participant = Participant;
     }
 

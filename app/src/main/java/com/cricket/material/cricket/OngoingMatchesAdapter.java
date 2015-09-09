@@ -8,8 +8,9 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
+import com.cricket.material.cricket.SeriesFB.Ongoing;
+import com.cricket.material.cricket.SeriesFB.Past;
 import com.cricket.material.cricket.cricketsummary.CricketSummary;
-import com.cricket.material.cricket.cricketsummary.Series;
 import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
@@ -61,12 +62,24 @@ public class OngoingMatchesAdapter extends ArrayAdapter<OngoingMatchDetail> impl
     @Override
     public void onDataChange(DataSnapshot dataSnapshot) {
         Log.d("##############", "onDataChange ongoing");
-        CricketSummary cricketSummary = dataSnapshot.getValue(CricketSummary.class);
-        List<Series> series = cricketSummary.getQuery().getResults().getSeries();
 
-        for (int i = 0; i < series.size(); i++) {
-            Log.d(LOG_TAG, series.get(i).getSeriesName());
-            OngoingMatchDetail seriesData = new OngoingMatchDetail(series.get(i).getSeriesName());
+        Ongoing ongoing = dataSnapshot.child("ongoing").getValue(Ongoing.class);
+
+        List<com.cricket.material.cricket.CricketSummaryFB.Series> ongoingSeries = ongoing.getSeries();
+
+        for (int i = 0; i < ongoingSeries.size(); i++) {
+            Log.d(LOG_TAG, ongoingSeries.get(i).getSeriesName());
+            OngoingMatchDetail seriesData = new OngoingMatchDetail(ongoingSeries.get(i).getSeriesName());
+            add(seriesData);
+        }
+
+        Past past = dataSnapshot.child("past").getValue(Past.class);
+
+        List<com.cricket.material.cricket.CricketSummaryFB.Series> pastSeries = past.getSeries();
+
+        for (int i = 0; i < pastSeries.size(); i++) {
+            Log.d(LOG_TAG, pastSeries.get(i).getSeriesName());
+            OngoingMatchDetail seriesData = new OngoingMatchDetail(pastSeries.get(i).getSeriesName());
             add(seriesData);
         }
     }
