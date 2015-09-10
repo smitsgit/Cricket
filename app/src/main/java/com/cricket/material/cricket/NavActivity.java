@@ -45,16 +45,19 @@ public class NavActivity extends AppCompatActivity
         switch(position) {
             case 0:
                 fragmentManager.beginTransaction()
+                        .setCustomAnimations(R.anim.abc_slide_in_top, R.anim.abc_fade_out)
                         .replace(R.id.container, new NavActivityFragment())
                         .commit();
                 break;
             case 1:
                 fragmentManager.beginTransaction()
+                        .setCustomAnimations(R.anim.abc_slide_in_top, R.anim.abc_fade_out)
                         .replace(R.id.container, new TeamInfoFragment())
                         .commit();
                 break;
             case 2:
                 fragmentManager.beginTransaction()
+                        .setCustomAnimations(R.anim.abc_slide_in_top, R.anim.abc_fade_out)
                         .replace(R.id.container, new UpComingMatchesFragment())
                         .commit();
                 break;
