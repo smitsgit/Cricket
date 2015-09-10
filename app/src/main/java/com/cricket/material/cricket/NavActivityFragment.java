@@ -34,6 +34,7 @@ public class NavActivityFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_nav,
                 container, false);
         mViewPager = (ViewPager) rootView.findViewById(R.id.pager);
+        mViewPager.setPageTransformer(true, new ZoomOutPageTransformer());
         mViewPager.setAdapter(new CustomerInnerPagerAdapter(getChildFragmentManager()));
         final TabHost tabHost = (TabHost) rootView
                 .findViewById(android.R.id.tabhost);
