@@ -24,7 +24,8 @@
             android:parentActivityName=".NavActivity"/>
         <activity
             android:name=".SeriesActivity"
-            android:label="@string/title_activity_series" />
+            android:label="@string/title_activity_series"
+            android:parentActivityName=".NavActivity"/>
     </application>
 
 </manifest>

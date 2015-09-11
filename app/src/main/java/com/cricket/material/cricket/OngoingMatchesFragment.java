@@ -1,12 +1,17 @@
 package com.cricket.material.cricket;
 
+import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
+import com.cricket.material.cricket.CricketSummaryFB.Series;
+import com.cricket.material.cricket.NewsFB.Item;
 import com.cricket.material.cricket.cricketsummary.CricketService;
 
 /**
@@ -60,19 +65,17 @@ public class OngoingMatchesFragment extends Fragment {
         ListView listView = (ListView) rootView.findViewById(R.id.listview_ongoing_matches);
         listView.setAdapter(mOngoingMatchesAdapter);
 
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
-//        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-//
-//            @Override
-//            public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
-//                // CursorAdapter returns a cursor at the correct position for getItem(), or null
-//                // if it cannot seek to that position.
-//                Cursor cursor = (Cursor) adapterView.getItemAtPosition(position);
-//                if (cursor != null) {
-//                    //do nothing
-//                }
-//            }
-//        });
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
+                Series series = (Series)adapterView.getItemAtPosition(position);
+
+                Intent intent = new Intent(getActivity(), SeriesActivity.class);
+                //intent.putExtra(NEWS_URL, newsItem.getLink());
+                startActivity(intent);
+            }
+        });
 
         return rootView;
     }

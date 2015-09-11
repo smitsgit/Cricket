@@ -8,6 +8,8 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
+import com.cricket.material.cricket.CricketSummaryFB.Series;
+import com.cricket.material.cricket.NewsFB.Item;
 import com.cricket.material.cricket.SeriesFB.Ongoing;
 import com.cricket.material.cricket.SeriesFB.Past;
 import com.cricket.material.cricket.cricketsummary.CricketSummary;
@@ -22,7 +24,7 @@ import retrofit.Callback;
 import retrofit.RetrofitError;
 import retrofit.client.Response;
 
-public class OngoingMatchesAdapter extends ArrayAdapter<OngoingMatchDetail> implements  Callback<CricketSummary>, ValueEventListener {
+public class OngoingMatchesAdapter extends ArrayAdapter<Series> implements  Callback<CricketSummary>, ValueEventListener {
 
     private Firebase mRef;
 
@@ -36,14 +38,14 @@ public class OngoingMatchesAdapter extends ArrayAdapter<OngoingMatchDetail> impl
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        OngoingMatchDetail match = getItem(position);
+        Series seriesInfo = getItem(position);
 
         if (convertView == null) {
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.list_item_ongoing_matches, parent, false);
         }
 
         TextView series = (TextView) convertView.findViewById(R.id.list_item_series);
-        series.setText(match.series);
+        series.setText(seriesInfo.getSeriesName());
 
         return convertView;
     }
@@ -67,20 +69,16 @@ public class OngoingMatchesAdapter extends ArrayAdapter<OngoingMatchDetail> impl
 
         List<com.cricket.material.cricket.CricketSummaryFB.Series> ongoingSeries = ongoing.getSeries();
 
-        for (int i = 0; i < ongoingSeries.size(); i++) {
-            Log.d(LOG_TAG, ongoingSeries.get(i).getSeriesName());
-            OngoingMatchDetail seriesData = new OngoingMatchDetail(ongoingSeries.get(i).getSeriesName());
-            add(seriesData);
+        for (Series series : ongoingSeries) {
+            add(series);
         }
 
         Past past = dataSnapshot.child("past").getValue(Past.class);
 
         List<com.cricket.material.cricket.CricketSummaryFB.Series> pastSeries = past.getSeries();
 
-        for (int i = 0; i < pastSeries.size(); i++) {
-            Log.d(LOG_TAG, pastSeries.get(i).getSeriesName());
-            OngoingMatchDetail seriesData = new OngoingMatchDetail(pastSeries.get(i).getSeriesName());
-            add(seriesData);
+        for (Series series : pastSeries) {
+            add(series);
         }
     }
 
