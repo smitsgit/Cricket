@@ -20,7 +20,8 @@
         </activity>
         <activity
             android:name=".WebViewActivity"
-            android:label="@string/news_title" />
+            android:label="@string/news_title"
+            android:parentActivityName=".NavActivity"/>
         <activity
             android:name=".SeriesActivity"
             android:label="@string/title_activity_series" />
