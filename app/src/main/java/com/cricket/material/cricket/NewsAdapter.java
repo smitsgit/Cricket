@@ -24,7 +24,7 @@ import retrofit.RetrofitError;
 import retrofit.client.Response;
 
 /* test */
-public class NewsAdapter extends ArrayAdapter<NewsDetail> implements Callback<CricketNews>, ValueEventListener {
+public class NewsAdapter extends ArrayAdapter<Item> implements Callback<CricketNews>, ValueEventListener {
 
     private final String LOG_TAG = NewsAdapter.class.getSimpleName();
     private Firebase mRef;
@@ -39,7 +39,7 @@ public class NewsAdapter extends ArrayAdapter<NewsDetail> implements Callback<Cr
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         // Get the data item for this position
-        NewsDetail news = getItem(position);
+        Item news = getItem(position);
         // Check if an existing view is being reused, otherwise inflate the view
         if (convertView == null) {
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.list_item_news, parent, false);
@@ -49,11 +49,11 @@ public class NewsAdapter extends ArrayAdapter<NewsDetail> implements Callback<Cr
         TextView author = (TextView) convertView.findViewById(R.id.list_item_news_author);
         TextView title = (TextView) convertView.findViewById(R.id.list_item_news_title);
 
-        author.setText(news.author);
-        title.setText(news.title);
-        if (news.getUrl() != null) {
+        author.setText(news.getAuthor());
+        title.setText(news.getTitle());
+        if (news.getThumburl() != null) {
             Picasso.with(getContext())
-                    .load(news.getUrl())
+                    .load(news.getThumburl())
                     .noFade()
                     .into(thumb);
         }
@@ -76,9 +76,8 @@ public class NewsAdapter extends ArrayAdapter<NewsDetail> implements Callback<Cr
         Log.d(LOG_TAG, "onDataChange ");
         CricketNews cricketNews = dataSnapshot.getValue(CricketNews.class);
         List<Item> items = cricketNews.getItem();
-        for (int i = 0; i < items.size(); i++) {
-            NewsDetail newsData = new NewsDetail(items.get(i).getAuthor(), items.get(i).getTitle(), items.get(i).getThumburl(), items.get(i).getLink());
-            add(newsData);
+        for (Item item : items) {
+            add(item);
         }
     }
 

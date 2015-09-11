@@ -10,6 +10,7 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.cricket.material.cricket.News.CricketNewsService;
+import com.cricket.material.cricket.NewsFB.Item;
 
 /**
  * A placeholder fragment containing a simple view.
@@ -68,10 +69,10 @@ public class NewsFragment extends Fragment {
 
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
-                NewsDetail detail = (NewsDetail)adapterView.getItemAtPosition(position);
+                Item newsItem = (Item)adapterView.getItemAtPosition(position);
 
                 Intent intent = new Intent(getActivity(), WebViewActivity.class);
-                intent.putExtra(NEWS_URL, detail.getLink());
+                intent.putExtra(NEWS_URL, newsItem.getLink());
                 startActivity(intent);
             }
         });
