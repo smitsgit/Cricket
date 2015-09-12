@@ -1,6 +1,9 @@
 
 package com.cricket.material.cricket.CricketSummaryFB;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import java.util.HashMap;
 import java.util.Map;
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
@@ -22,7 +25,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
     "team2Score",
     "venue"
 })
-public class Match {
+public class Match implements Parcelable {
 
     @JsonProperty("date")
     private String date;
@@ -235,4 +238,46 @@ public class Match {
         this.additionalProperties.put(name, value);
     }
 
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(this.date);
+        dest.writeString(this.matchid);
+        dest.writeString(this.matchno);
+        dest.writeString(this.result);
+        dest.writeString(this.team1);
+        dest.writeString(this.team1Score);
+        dest.writeString(this.team2);
+        dest.writeString(this.team2Score);
+        dest.writeString(this.venue);
+    }
+
+    public Match() {
+    }
+
+    protected Match(Parcel in) {
+        this.date = in.readString();
+        this.matchid = in.readString();
+        this.matchno = in.readString();
+        this.result = in.readString();
+        this.team1 = in.readString();
+        this.team1Score = in.readString();
+        this.team2 = in.readString();
+        this.team2Score = in.readString();
+        this.venue = in.readString();
+    }
+
+    public static final Parcelable.Creator<Match> CREATOR = new Parcelable.Creator<Match>() {
+        public Match createFromParcel(Parcel source) {
+            return new Match(source);
+        }
+
+        public Match[] newArray(int size) {
+            return new Match[size];
+        }
+    };
 }

@@ -3,6 +3,7 @@ package com.cricket.material.cricket;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,6 +14,8 @@ import android.widget.ListView;
 import com.cricket.material.cricket.CricketSummaryFB.Series;
 import com.cricket.material.cricket.NewsFB.Item;
 import com.cricket.material.cricket.cricketsummary.CricketService;
+
+import java.io.Serializable;
 
 /**
  * A placeholder fragment containing a simple view.
@@ -25,6 +28,7 @@ public class OngoingMatchesFragment extends Fragment {
     private static final String ARG_SECTION_NUMBER = "section_number";
     private static final String includes_past  = "select * from cricket.series.past";
     private static final String includes_ongoing = "select * from cricket.series.ongoing";
+    private static final String SERIES_DATA = "SeriesData";
     private OngoingMatchesAdapter mOngoingMatchesAdapter;
 
 
@@ -72,7 +76,7 @@ public class OngoingMatchesFragment extends Fragment {
                 Series series = (Series)adapterView.getItemAtPosition(position);
 
                 Intent intent = new Intent(getActivity(), SeriesActivity.class);
-                //intent.putExtra(NEWS_URL, newsItem.getLink());
+                intent.putExtra(SERIES_DATA, series);
                 startActivity(intent);
             }
         });

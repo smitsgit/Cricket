@@ -1,6 +1,9 @@
 
 package com.cricket.material.cricket.CricketSummaryFB;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -21,7 +24,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
     "SeriesName",
     "StartDate"
 })
-public class Series {
+public class Series implements Parcelable {
 
     @JsonProperty("\"SeriesId\"")
     private String SeriesId;
@@ -168,4 +171,40 @@ public class Series {
         this.additionalProperties.put(name, value);
     }
 
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(this.SeriesId);
+        dest.writeString(this.EndDate);
+        dest.writeTypedList(Matches);
+        dest.writeParcelable(this.Participant, 0);
+        dest.writeString(this.SeriesName);
+        dest.writeString(this.StartDate);
+    }
+
+    public Series() {
+    }
+
+    protected Series(Parcel in) {
+        this.SeriesId = in.readString();
+        this.EndDate = in.readString();
+        this.Matches = in.createTypedArrayList(Match.CREATOR);
+        this.Participant = in.readParcelable(com.cricket.material.cricket.CricketSummaryFB.Participant.class.getClassLoader());
+        this.SeriesName = in.readString();
+        this.StartDate = in.readString();
+    }
+
+    public static final Parcelable.Creator<Series> CREATOR = new Parcelable.Creator<Series>() {
+        public Series createFromParcel(Parcel source) {
+            return new Series(source);
+        }
+
+        public Series[] newArray(int size) {
+            return new Series[size];
+        }
+    };
 }

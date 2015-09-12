@@ -2,12 +2,18 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
+    android:elevation="4dp"
+    android:gravity="center_vertical"
+    android:minHeight="?android:attr/listPreferredItemHeight"
     android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:paddingBottom="8dp"
+        android:paddingTop="8dp">
 
         <TextView
             android:id="@+id/ongoing_matches_matchno"
@@ -17,7 +23,7 @@
             android:paddingLeft="16dp"
             android:text="2ND TEST AT"
             android:textAppearance="?android:textAppearanceSmall"
-            android:textColor="@color/black" />
+            android:textColor="@color/grey_500" />
 
         <TextView
             android:id="@+id/ongoing_matches_venue"
@@ -27,7 +33,7 @@
             android:paddingLeft="2dp"
             android:text="COLOMBO"
             android:textAppearance="?android:textAppearanceSmall"
-            android:textColor="@color/black" />
+            android:textColor="@color/grey_500" />
 
         <TextView
             android:id="@+id/ongoing_matches_date"
@@ -37,7 +43,7 @@
             android:paddingLeft="2dp"
             android:text=", AUG 20-25, 2015"
             android:textAppearance="?android:textAppearanceSmall"
-            android:textColor="@color/black" />
+            android:textColor="@color/grey_500" />
 
     </LinearLayout>
 
@@ -53,7 +59,7 @@
             android:fontFamily="sans-serif-condensed"
             android:paddingLeft="16dp"
             android:text="SL"
-            android:textAppearance="?android:textAppearanceLarge"
+            android:textAppearance="?android:textAppearanceMedium"
             android:textColor="@color/black" />
 
         <TextView
@@ -63,11 +69,20 @@
             android:fontFamily="sans-serif-condensed"
             android:paddingLeft="2dp"
             android:text=" 393/9"
-            android:textAppearance="?android:textAppearanceLarge"
+            android:textAppearance="?android:textAppearanceMedium"
             android:textColor="@color/black"
             android:textStyle="bold" />
 
     </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="8dp"
+        android:background="@color/grey_700" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -81,7 +96,7 @@
             android:fontFamily="sans-serif-condensed"
             android:paddingLeft="16dp"
             android:text="IND"
-            android:textAppearance="?android:textAppearanceLarge"
+            android:textAppearance="?android:textAppearanceMedium"
             android:textColor="@color/black" />
 
         <TextView
@@ -89,9 +104,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="sans-serif-condensed"
+            android:paddingBottom="8dp"
             android:paddingLeft="2dp"
             android:text=" 400/2"
-            android:textAppearance="?android:textAppearanceLarge"
+            android:textAppearance="?android:textAppearanceMedium"
             android:textColor="@color/black"
             android:textStyle="bold" />
 
@@ -101,11 +117,13 @@
         android:id="@+id/ongoing_matches_result"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/grey"
+        android:background="@color/grey_700"
         android:fontFamily="sans-serif-condensed"
+        android:paddingBottom="8dp"
         android:paddingLeft="16dp"
+        android:paddingTop="8dp"
         android:text="SA won by 49 runs"
         android:textAppearance="?android:textAppearanceSmall"
-        android:textStyle="bold" />
+        android:textColor="@color/black" />
 
 </LinearLayout>

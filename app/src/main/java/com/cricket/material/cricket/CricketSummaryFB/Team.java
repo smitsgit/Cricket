@@ -1,6 +1,9 @@
 
 package com.cricket.material.cricket.CricketSummaryFB;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import java.util.HashMap;
 import java.util.Map;
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
@@ -15,7 +18,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
     "Name",
     "teamid"
 })
-public class Team {
+public class Team implements Parcelable {
 
     @JsonProperty("Name")
     private String Name;
@@ -74,4 +77,32 @@ public class Team {
         this.additionalProperties.put(name, value);
     }
 
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(this.Name);
+        dest.writeString(this.teamid);
+    }
+
+    public Team() {
+    }
+
+    protected Team(Parcel in) {
+        this.Name = in.readString();
+        this.teamid = in.readString();
+    }
+
+    public static final Parcelable.Creator<Team> CREATOR = new Parcelable.Creator<Team>() {
+        public Team createFromParcel(Parcel source) {
+            return new Team(source);
+        }
+
+        public Team[] newArray(int size) {
+            return new Team[size];
+        }
+    };
 }

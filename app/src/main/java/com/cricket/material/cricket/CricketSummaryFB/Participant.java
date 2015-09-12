@@ -1,6 +1,9 @@
 
 package com.cricket.material.cricket.CricketSummaryFB;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -18,7 +21,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
     "mlevel",
     "mtype"
 })
-public class Participant {
+public class Participant implements Parcelable {
 
     @JsonProperty("Team")
     private List<com.cricket.material.cricket.CricketSummaryFB.Team> Team = new ArrayList<com.cricket.material.cricket.CricketSummaryFB.Team>();
@@ -99,4 +102,34 @@ public class Participant {
         this.additionalProperties.put(name, value);
     }
 
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeTypedList(Team);
+        dest.writeString(this.mlevel);
+        dest.writeString(this.mtype);
+    }
+
+    public Participant() {
+    }
+
+    protected Participant(Parcel in) {
+        this.Team = in.createTypedArrayList(com.cricket.material.cricket.CricketSummaryFB.Team.CREATOR);
+        this.mlevel = in.readString();
+        this.mtype = in.readString();
+    }
+
+    public static final Parcelable.Creator<Participant> CREATOR = new Parcelable.Creator<Participant>() {
+        public Participant createFromParcel(Parcel source) {
+            return new Participant(source);
+        }
+
+        public Participant[] newArray(int size) {
+            return new Participant[size];
+        }
+    };
 }
