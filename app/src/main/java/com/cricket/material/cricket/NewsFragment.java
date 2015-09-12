@@ -9,7 +9,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
-import com.cricket.material.cricket.News.CricketNewsService;
+
 import com.cricket.material.cricket.NewsFB.Item;
 
 /**
@@ -43,18 +43,9 @@ public class NewsFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         mNewsAdapter = new NewsAdapter(getActivity());
-        /* No Retrofit Calls from Apps Anymore
-        loadCricNewsData(includes_news);*/
     }
 
-/*
-    protected void loadCricNewsData(String includes) {
-        CricketNewsService service = new CricketNewsService();
-        service.loadCricNewsData(mNewsAdapter, includes);
-    }
-*/
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,

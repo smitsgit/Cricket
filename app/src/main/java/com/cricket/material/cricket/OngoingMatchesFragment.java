@@ -1,9 +1,7 @@
 package com.cricket.material.cricket;
 
 import android.content.Intent;
-import android.database.Cursor;
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,10 +10,6 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.cricket.material.cricket.CricketSummaryFB.Series;
-import com.cricket.material.cricket.NewsFB.Item;
-import com.cricket.material.cricket.cricketsummary.CricketService;
-
-import java.io.Serializable;
 
 /**
  * A placeholder fragment containing a simple view.

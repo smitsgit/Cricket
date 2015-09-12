@@ -14,11 +14,7 @@ import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
 import com.firebase.client.ValueEventListener;
 
-import retrofit.Callback;
-import retrofit.RetrofitError;
-import retrofit.client.Response;
-
-public class ScoresAdapter extends ArrayAdapter<ScoresDetail> implements Callback<LivescoreSummary>, ValueEventListener {
+public class ScoresAdapter extends ArrayAdapter<ScoresDetail> implements  ValueEventListener {
 
     private final String LOG_TAG = ScoresAdapter.class.getSimpleName();
     private Firebase mRef;
@@ -43,16 +39,6 @@ public class ScoresAdapter extends ArrayAdapter<ScoresDetail> implements Callbac
         scores.setText(match.score);
 
         return convertView;
-    }
-
-    @Override
-    public void success(LivescoreSummary livescoreSummary, Response response) {
-        Log.d(LOG_TAG, "success ");
-    }
-
-    @Override
-    public void failure(RetrofitError error) {
-
     }
 
     @Override

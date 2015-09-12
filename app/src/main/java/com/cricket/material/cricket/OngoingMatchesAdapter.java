@@ -9,10 +9,8 @@ import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
 import com.cricket.material.cricket.CricketSummaryFB.Series;
-import com.cricket.material.cricket.NewsFB.Item;
 import com.cricket.material.cricket.SeriesFB.Ongoing;
 import com.cricket.material.cricket.SeriesFB.Past;
-import com.cricket.material.cricket.cricketsummary.CricketSummary;
 import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
@@ -20,11 +18,7 @@ import com.firebase.client.ValueEventListener;
 
 import java.util.List;
 
-import retrofit.Callback;
-import retrofit.RetrofitError;
-import retrofit.client.Response;
-
-public class OngoingMatchesAdapter extends ArrayAdapter<Series> implements  Callback<CricketSummary>, ValueEventListener {
+public class OngoingMatchesAdapter extends ArrayAdapter<Series> implements  ValueEventListener {
 
     private Firebase mRef;
 
@@ -50,16 +44,6 @@ public class OngoingMatchesAdapter extends ArrayAdapter<Series> implements  Call
         return convertView;
     }
 
-
-    @Override
-    public void success(CricketSummary cricketSummary, Response response) {
-        Log.d(LOG_TAG, "success");
-    }
-
-    @Override
-    public void failure(RetrofitError error) {
-        Log.d(LOG_TAG, "failure");
-    }
 
     @Override
     public void onDataChange(DataSnapshot dataSnapshot) {

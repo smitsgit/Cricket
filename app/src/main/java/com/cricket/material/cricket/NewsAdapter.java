@@ -19,12 +19,8 @@ import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
-import retrofit.Callback;
-import retrofit.RetrofitError;
-import retrofit.client.Response;
-
 /* test */
-public class NewsAdapter extends ArrayAdapter<Item> implements Callback<CricketNews>, ValueEventListener {
+public class NewsAdapter extends ArrayAdapter<Item> implements  ValueEventListener {
 
     private final String LOG_TAG = NewsAdapter.class.getSimpleName();
     private Firebase mRef;
@@ -61,15 +57,6 @@ public class NewsAdapter extends ArrayAdapter<Item> implements Callback<CricketN
         return convertView;
     }
 
-    @Override
-    public void success(CricketNews cricketNews, Response response) {
-        Log.d(LOG_TAG, "success ");
-    }
-
-    @Override
-    public void failure(RetrofitError error) {
-
-    }
 
     @Override
     public void onDataChange(DataSnapshot dataSnapshot) {

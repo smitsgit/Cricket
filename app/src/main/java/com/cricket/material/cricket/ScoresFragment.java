@@ -7,8 +7,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
 
-import com.cricket.material.cricket.LiveScore.LiveScoreService;
-
 /**
  * A placeholder fragment containing a simple view.
  */
@@ -40,15 +38,7 @@ public class ScoresFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         mScoresAdapter = new ScoresAdapter(getActivity());
-        /* No Retrofit Calls from Apps Anymore
-        loadLiveScoreData(includes_live); */
-    }
-
-    protected void loadLiveScoreData(String includes) {
-        LiveScoreService service = new LiveScoreService();
-        service.loadLiveScoreData(mScoresAdapter, includes);
     }
 
     @Override
